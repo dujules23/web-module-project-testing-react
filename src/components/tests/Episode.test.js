@@ -52,11 +52,11 @@ test("renders the summary test passed as prop", ()=>{
 test("renders default image when image is not defined", ()=>{
     // Arrange
     render(<Episode episode={testEpisodeWithoutImage}/>);
-    const blankImage = screen.getByAltText( './stranger_things.png')
+    const noImage = screen.getByAltText( './stranger_things.png')
     // Act
 
     // Assert 
-    expect(blankImage).toBeInTheDocument();
+    expect(noImage).toBeInTheDocument();
 })
 
 //Tasks
