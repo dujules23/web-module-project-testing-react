@@ -8,7 +8,7 @@ export default function App() {
   const displayFunc = (data)=> {
     console.log(data);
   }
-
+  
   return (
     <div>
       <nav className="navbar navbar-dark bg-dark">
