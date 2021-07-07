@@ -3,15 +3,37 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Show from './../Show';
+import Loading from './../Loading';
 
 const testShow = {
     //add in approprate test data structure here.
+    name: "Stranger Things",
+    image: "",
+    summary: "Show about creepy, strange things",
+    seasons: {
+        id: Date.now(),
+        name: "Season 1",
+        episodes: []
+}
 }
 
 test('renders testShow and no selected Season without errors', ()=>{
+    // Arrange
+    render(<Show selectedSeason={testShow}/> )
+
+    // Act
+
+    // Assert
+    expect(testShow).toBeTruthy();
 });
 
 test('renders Loading component when prop show is null', () => {
+    // Arrange
+    render(<Loading show={null} />)
+
+    // Act
+
+    // Assert
 });
 
 test('renders same number of options seasons are passed in', ()=>{
