@@ -3,21 +3,80 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Show from './../Show';
+import Loading from './../Loading';
 
 const testShow = {
     //add in approprate test data structure here.
+    name: "Stranger Things",
+    image: "",
+    summary: "Show about creepy, strange things",
+    seasons: [
+    {
+        id: Date.now(),
+        name: "Season 1",
+        episodes: []
+    },
+    {
+        id: 1,
+        name: "Season 2",
+        episodes: []
+    }
+]   
 }
 
 test('renders testShow and no selected Season without errors', ()=>{
+    // Arrange
+    render(<Show show={testShow} selectedSeason="none" /> )
+    const selectedSeason = screen.getByRole("option", { name: ""})
+    // Act
+
+    // Assert
+    expect(testShow).toBeTruthy();
+    expect(selectedSeason).toBeTruthy();
+    
 });
 
 test('renders Loading component when prop show is null', () => {
+    // Arrange
+    render(<Loading show={null} />)
+
+    // Act
+
+    // Assert
 });
 
-test('renders same number of options seasons are passed in', ()=>{
+test('renders same number of season select options are passed in', ()=>{
+    // Arrange
+    render(<Show selectedSeason={testShow}/> ) 
+    const select = screen.getByRole("select" , { name: "seasons"})
+    const season1 = screen.getByRole("option", { name: "season 1"})
+    const season2 = screen.getByRole("option", { name: /season 2/i })
+    // const season1 = screen.getByText( /season 1/i )
+    // const season2 = screen.getByText( /season 2/i )
+    // Act
+    
+    userEvent.click(select)
+
+    // Assert
+    // expect(season1).toBeInTheDocument();
+    // expect(season2).toBeInTheDocument();
+
 });
 
-test('handleSelect is called when an season is selected', () => {
+test('handleSelect is called when a season is selected', () => {
+    // Arrange
+    // const mockHandleSelect = jest.fn(() => { return ("hey") })
+    render(<Show selectedSeason={testShow}/> )
+    // const seasons = screen.getByTestId("season-option")
+    // const season1 = screen.getByText( /season 1/i )
+    // const season2 = screen.getByText( /season 2/i )
+    const select = screen.getByRole("select", )
+    // Act
+    userEvent.click(seasons)
+
+    // Assert
+    expect(mockHandleSelect).toHaveBeenCalled();
+    expect(mockHandleSelect.mock.calls).toHaveLength(2)
 });
 
 test('component renders when no seasons are selected and when rerenders with a season passed in', () => {

@@ -1,5 +1,14 @@
 
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
+import Display from './../Display'
+
+test('Display component renders without any passed in props', () => {
+    // Arrange
+    render(<Display displayfun={null}/>);
+})
 
 
 
